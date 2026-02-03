@@ -9,6 +9,7 @@ export const ExpenseProvider = ({children}) => {
         {id: 2, charge: "KTX", amount: 10000, category: "이동비", month: 8},
         {id: 3, charge: "영화", amount: 2500, category: "문화생활비", month: 4},
     ])
+
     // addExpense함수 --> expenses에 저장
     const addExpense =(charge, amount, category, month)=>{
         const newExpense = {
