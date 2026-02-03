@@ -6,21 +6,26 @@ import ExpenseItem from '../ExpenseItem/ExpenseItem'
 import ExpensePrice from '../ExpensePrice/ExpensePrice';
 
 const ExpenseList = () => {
-    const {expenses, filterExpense, matchExpenses, deleteAllList} = useContext(ExpenseContext)
+    // 전역변수에서 가져오기
+    const {expenses, filterExpense, matchExpenses, deleteAllList}
+    = useContext(ExpenseContext)
 
-    console.log("필터링된 배열",matchExpenses)
-
+    // 필터링된 [category, month] 저장
     const [filterCategory, setFilterCategory] = useState("all")
     const [filterMonth, setFilterMonth] = useState("all")
 
+    // 실시간 카테고리 조회 확인
     useEffect(() => {
         filterExpense(filterCategory, filterMonth);
         }, [filterCategory, filterMonth, expenses]);
-        const filterSubmit=(e)=> {
-            e.preventDefault();
-        filterExpense(filterCategory, filterMonth)
+
+    // 조회 시
+    const filterSubmit=(e)=> {
+        e.preventDefault();
+    filterExpense(filterCategory, filterMonth)
     }
 
+    // 목록 지우기 클릭 시
     const clearItem=(e)=> {
         e.preventDefault();
         deleteAllList();
@@ -31,22 +36,22 @@ const ExpenseList = () => {
             <button 
                 onClick={clearItem}
                 className='btn'
-                // onClick={clearItems}
             >
-                목록 지우기
-                <MdDelete />
+            목록 지우기
+            <MdDelete />
             </button>
-
             <form onSubmit={filterSubmit}>
             <div 
                 className="filter-container" >
                 <div className='form-group'>
                         <label htmlFor='filterCategory'>카테고리 조회</label>
-                        <select 
-                            id="filterCategory"              // 고유 ID
-                            name="filterCategory"            // input의 이름
+                        <select
+                            className="form-control"
+                            id="filterCategory"
+                            name="filterCategory"
                             value={filterCategory}
                             onChange={(e)=>{setFilterCategory(e.target.value)}} >
+                                {/* category 조회 사항 */}
                                 <option value="all">all</option>
                                 <option>식비</option>
                                 <option>이동비</option>
@@ -56,10 +61,12 @@ const ExpenseList = () => {
                     <div className='form-group'>
                         <label htmlFor='filterMonth'>월 조회</label>
                         <select 
-                            id="filterMonth"              // 고유 ID
-                            name="filterMonth"            // input의 이름
+                            className="form-control"
+                            id="filterMonth"
+                            name="filterMonth"
                             value={filterMonth}
                             onChange={(e)=>{setFilterMonth(e.target.value)}} >
+                                {/* month 조회 사항 */}
                                 <option value="all">all</option>
                                 <option value="1">1월</option>
                                 <option value="2">2월</option>
@@ -78,6 +85,7 @@ const ExpenseList = () => {
                 </div>
                 </form>
             <ul>
+                {/* ExpenseItem컴포넌트에 expenses배열 요소 하나씩 보내기 */}
                 {matchExpenses.map((expense) => (
                 <ExpenseItem key={expense.id} expense={expense} />))}
             </ul>

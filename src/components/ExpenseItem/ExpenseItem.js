@@ -4,11 +4,13 @@ import { MdDelete, MdEdit } from 'react-icons/md';
 import { ExpenseContext } from '../../ExpenseContext';
 
 
-// ExpenseItem - 개별 지출 항목을 표시하는 컴포넌트(수정 버튼, 삭제 버튼)
 const ExpenseItem = ({expense}) => {
 
-    const {handleEdit, handleDelete} = useContext(ExpenseContext)
+    // 전역 store에서 가져오기
+    const {handleEdit, handleDelete}
+     = useContext(ExpenseContext)
     
+    // 요소 출력
     return (
         <li className='item'>
             <div className='info'>
@@ -26,26 +28,23 @@ const ExpenseItem = ({expense}) => {
                 </span>
             </div>
             <div>
+                {/* 수정 */}
                 <button 
                     onClick={()=>handleEdit(expense.id)}
                     className='edit-btn'
                 >   
-                {/* 수정 */}
                     <MdEdit />
                 </button>
                 {/* 삭제 */}
                 <button 
                     onClick={()=>handleDelete(expense.id)}
                     className='clear-btn' >
-                    {/* onClick={() => 
-                        handleDelete(expense.id)
-                    }> */}
                     <MdDelete />
                 </button> 
             </div>
         </li>
     )
 }
-// 이 컴포넌트를 다른 파일에서 import할 수 있도록 내보내기
+
 export default ExpenseItem
 

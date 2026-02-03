@@ -12,9 +12,14 @@
     padding: 0;                  /* 기존 padding 때문에 커 보일 수 있으니 0으로 조절 */
 }
 
-.filter-container select {
-    width: 250px;                 /* form-group(40%) 안에서 꽉 차게 */
-    height: 38px;
-    border: 1px solid var(--secondColor);
-    border-radius: 4px;
+.form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--secondColor);
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    padding: 0;
 }

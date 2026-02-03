@@ -8,9 +8,11 @@ import { ExpenseContext } from '../../ExpenseContext';
 
 const ExpenseForm =()=> {
     
+    // 이름 저장
     const [charge, setCharge] = useState("")
     const [amount, setAmount] = useState(0)
 
+    // 비용 저장
     const [category, setCategory] = useState("식비")
     const [month, setMonth] = useState(1)
     
@@ -18,7 +20,7 @@ const ExpenseForm =()=> {
     const {addExpense, updateExpense, editItem} = 
     useContext(ExpenseContext);
     
-
+    // 실시간 확인
     useEffect(() => {
         if (editItem) {
             // 새로운 데이터로 업데이트
@@ -28,19 +30,16 @@ const ExpenseForm =()=> {
             setMonth(editItem.month);
         }
     }, [editItem]);
-    //[editItem]: 감시 대상
 
+    // 제출 클릭 시
     const handleSubmit =(e)=> {
         e.preventDefault();
+        // 수정
         if(editItem) {
-                // 새로운 배열 저장
+            // 새로운 배열 저장, {} --> updateData()
             updateExpense(editItem.id, {charge, amount, category, month})
-            setCharge("")
-            setAmount("0")
-            setCategory("식비")
-            setMonth("1")
         } else {
-        console.log(charge, amount, category, month)
+        // 생성
         addExpense(charge, amount, category, month)
         setCharge("")
         setAmount("")
@@ -48,7 +47,6 @@ const ExpenseForm =()=> {
     }
 
     return (
-
         <form onSubmit={handleSubmit}>  
             <div className='form-center'>
                 <div className='form-group'>
@@ -82,11 +80,12 @@ const ExpenseForm =()=> {
                         id="category"              // 고유 ID
                         name="category"            // input의 이름
                         value={category}
-                        onChange={(e)=>{setCategory(e.target.value)}} >
-                            <option>식비</option>
-                            <option>이동비</option>
-                            <option>문화생활비</option>
-                    </select>    
+                        onChange={(e)=>{setCategory(e.target.value)}}
+                    >
+                        <option>식비</option>
+                        <option>이동비</option>
+                        <option>문화생활비</option>
+                    </select>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='amount'>월</label>
@@ -95,33 +94,32 @@ const ExpenseForm =()=> {
                         id="month"              // 고유 ID
                         name="month"            // input의 이름
                         value={month}
-                        onChange={(e)=>{setMonth(e.target.value)}} >
-                            <option value="1">1월</option>
-                            <option value="2">2월</option>
-                            <option value="3">3월</option>
-                            <option value="4">4월</option>
-                            <option value="5">5월</option>
-                            <option value="6">6월</option>
-                            <option value="7">7월</option>
-                            <option value="8">8월</option>
-                            <option value="9">9월</option>
-                            <option value="10">10월</option>
-                            <option value="11">11월</option>
-                            <option value="12">12월</option>
+                        onChange={(e)=>{setMonth(e.target.value)}}
+                    >
+                        <option value="1">1월</option>
+                        <option value="2">2월</option>
+                        <option value="3">3월</option>
+                        <option value="4">4월</option>
+                        <option value="5">5월</option>
+                        <option value="6">6월</option>
+                        <option value="7">7월</option>
+                        <option value="8">8월</option>
+                        <option value="9">9월</option>
+                        <option value="10">10월</option>
+                        <option value="11">11월</option>                            <option value="12">12월</option>
                     </select>    
                 </div>
             </div>
             {/* === 제출 버튼 === */}
             <button 
-                type='submit'      // 버튼 타입: submit (폼 제출)
-                className='btn'    // CSS 클래스명 (버튼 스타일링)
+                type='submit'
+                className='btn'
             >
-                제출                {/* 버튼에 표시될 텍스트 */}
+                제출
                 <MdSend className='btn-icon'/>
             </button>
         </form>
     )
 }
 
-// 이 컴포넌트를 다른 파일(App.js)에서 import할 수 있도록 내보내기
 export default ExpenseForm
