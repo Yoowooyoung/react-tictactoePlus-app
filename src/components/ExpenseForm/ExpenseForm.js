@@ -47,7 +47,9 @@ const ExpenseForm =()=> {
         // 생성
         addExpense(charge, amount, category, month)
         setCharge("")
-        setAmount("")
+        setAmount(0)
+        setCategory("식비")
+        setMonth(0)
         }
     }
 

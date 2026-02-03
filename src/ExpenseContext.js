@@ -65,6 +65,7 @@ export const ExpenseProvider = ({children}) => {
         });
         setExpenses(newExpenses);
         setEditItem(null);
+        handleAlert({ type: 'success', text: '아이템이 수정되었습니다.' });
         
     };
     // 모두 지우기
