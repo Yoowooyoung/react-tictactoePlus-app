@@ -29,6 +29,7 @@ export const ExpenseProvider = ({children}) => {
     // 필터링 함수
     const filterExpense =(filterCategory, filterMonth)=> {
         const matchExpense = expenses.filter((expense) => {
+                // 카테고리, 월이 모두 조건에 만족해야하기 때문에 AND연산자 사용
                 const matchCategory = filterCategory === "all" || filterCategory === expense.category
                 const matchMonth =  Number(filterMonth) === expense.month || filterMonth === "all"
             return matchCategory && matchMonth;
@@ -55,12 +56,10 @@ export const ExpenseProvider = ({children}) => {
         setEditItem(null);
         
     };
-
     // 모두 지우기
     const deleteAllList = (e) => {
-        setExpenses([])
+        setExpenses([])     // 빈 배열
     }
-    
     // 삭제 버튼
     const handleDelete = (id) => {
         const newExpenses = expenses.filter((expense) => {
@@ -68,7 +67,6 @@ export const ExpenseProvider = ({children}) => {
         })  
         setExpenses(newExpenses)
     }
-    
     // 금액 total
     const totalPrice = matchExpenses.reduce((acc, curr) =>{
         return (acc+= Number(curr.amount))

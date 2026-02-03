@@ -2,8 +2,8 @@ import { useContext } from "react"
 import { ExpenseContext } from "../../ExpenseContext"
 
 
-const ExpensePrice = ({expense}) => {
-  
+const ExpensePrice = () => {
+    // 전역 store에서 가져오기
     const { totalPrice } = useContext(ExpenseContext)
     return (
         <div>

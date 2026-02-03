@@ -28,6 +28,7 @@ const ExpenseForm =()=> {
             setAmount(editItem.amount);
             setCategory(editItem.category);
             setMonth(editItem.month);
+            
         }
     }, [editItem]);
 
@@ -38,6 +39,10 @@ const ExpenseForm =()=> {
         if(editItem) {
             // 새로운 배열 저장, {} --> updateData()
             updateExpense(editItem.id, {charge, amount, category, month})
+            setCharge("");   // 입력창 내용을 수정할 데이터로 채움
+            setAmount(0);
+            setCategory("식비");
+            setMonth("1");
         } else {
         // 생성
         addExpense(charge, amount, category, month)
