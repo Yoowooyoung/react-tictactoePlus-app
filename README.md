@@ -22,3 +22,10 @@ useContext를 활용한 전역 상태 관리
 제출물
 GitHub 저장소 링크
 학습 문서 (추가한 기능별로 "왜 이렇게 구현했는지" 포함)
+
+# 실행과정
+node.js 설치
+
+Visual Studio Code 
+console창에서: npm install // 파일 설치
+npm run start // 실행
