@@ -9,9 +9,6 @@ export const ExpenseProvider = ({children}) => {
         {id: 2, charge: "KTX", amount: 10000, category: "이동비", month: 8},
         {id: 3, charge: "영화", amount: 2500, category: "문화생활비", month: 4},
     ])
-
-    const [editItem, setEditItem] = useState(null)
-
     // addExpense함수 --> expenses에 저장
     const addExpense =(charge, amount, category, month)=>{
         const newExpense = {
@@ -22,6 +19,7 @@ export const ExpenseProvider = ({children}) => {
             month: Number(month),
         }
         setExpenses([...expenses, newExpense])
+        handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
     }
 
     // 필터링한 배열(matchExpenses)
@@ -37,41 +35,57 @@ export const ExpenseProvider = ({children}) => {
         setMatchExpenses(matchExpense)
     }
 
+    // 수정하고 있는 데이터: editItme
+    const [editItem, setEditItem] = useState(null)
     // 수정 (수정할 요소 찾기)
     const handleEdit =(id)=>{
-        const handleEditItem = expenses.find((expense)=>
+        const EditItem = expenses.find((expense)=>
             expense.id === id
         )
-        setEditItem(handleEditItem)
+        setEditItem(EditItem)
     }
     // 수정 (기존 요소에 수정할 내용으로 업데이트)
-    const updateExpense = (id, updatedData) => {
+    const updateExpense = (id, updatedExpense) => {
         const newExpenses = expenses.map((expense) => {
             if (expense.id === id) {
-                return { ...expense, ...updatedData };
+                return { ...expense, ...updatedExpense };
             }
             return expense;
         });
         setExpenses(newExpenses);
         setEditItem(null);
-        
+        handleAlert({ type: 'success', text: '아이템이 수정되었습니다.' });
     };
+
     // 모두 지우기
     const deleteAllList = (e) => {
         setExpenses([])     // 빈 배열
+        handleAlert({ type: 'danger', text: '아이템이 모두 삭제되었습니다.' });
     }
+
     // 삭제 버튼
     const handleDelete = (id) => {
         const newExpenses = expenses.filter((expense) => {
             return (expense.id !== id)
         })  
         setExpenses(newExpenses)
+        handleAlert({ type: 'danger', text: '아이템이 삭제되었습니다.' });
     }
     // 금액 total
     const totalPrice = matchExpenses.reduce((acc, curr) =>{
         return (acc+= Number(curr.amount))
     }, 0)
 
+    // 성공/실패 메시지
+    const [alert, setAlert] = useState({show: false, type: '', text: ''})
+    const handleAlert = ({type, text}) => {
+        // true: ON, success/dnager: 메시지 색깔
+        setAlert({ show: true, type, text})
+        // 메시지 2초동안 보여줌, 다시 off, type, text 초기화
+        setTimeout(()=> {
+            setAlert({show: false, type: '', text: ''})
+        }, 2000)
+    }
 
     return (
         <ExpenseContext.Provider value={{
@@ -79,6 +93,7 @@ export const ExpenseProvider = ({children}) => {
             matchExpenses,  // 필터링된 요소 배열
             expenses,       // 모든 요소 배열
             editItem,       //수정중인 아이템
+            alert,          // alert메시지
             // 메소드
             addExpense,      // 배열에 새 요소 추가
             filterExpense,   // 필터링
@@ -87,6 +102,7 @@ export const ExpenseProvider = ({children}) => {
             deleteAllList,   // 목록 지우기
             handleDelete,    // 삭제
             totalPrice,      // 가격 총합
+            handleAlert,      // alert 메시지
         }}>
             {children}
         </ExpenseContext.Provider>

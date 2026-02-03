@@ -9,6 +9,7 @@ const App = () => {
 
     return (
         <ExpenseProvider>
+        <Alert />
         <main className="main-container">   
             <h1>가계부 </h1>
             <div style={{ width: '100%', backgroundColor: 'white', padding: '1rem'}}>

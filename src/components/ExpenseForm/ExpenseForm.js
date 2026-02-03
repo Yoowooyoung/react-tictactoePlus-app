@@ -8,23 +8,23 @@ import { ExpenseContext } from '../../ExpenseContext';
 
 const ExpenseForm =()=> {
     
-    // 이름 저장
+    // charge, amount 저장
     const [charge, setCharge] = useState("")
     const [amount, setAmount] = useState(0)
 
-    // 비용 저장
+    // category, month 저장
     const [category, setCategory] = useState("식비")
     const [month, setMonth] = useState(1)
     
     // 전역store에서 호출
-    const {addExpense, updateExpense, editItem} = 
-    useContext(ExpenseContext);
+    const {addExpense, updateExpense, editItem} 
+    = useContext(ExpenseContext);
     
     // 실시간 확인
     useEffect(() => {
         if (editItem) {
-            // 새로운 데이터로 업데이트
-            setCharge(editItem.charge);   // 입력창 내용을 수정할 데이터로 채움
+            // 입력창 내용을 수정할 데이터로 채움
+            setCharge(editItem.charge);
             setAmount(editItem.amount);
             setCategory(editItem.category);
             setMonth(editItem.month);
@@ -37,7 +37,7 @@ const ExpenseForm =()=> {
         e.preventDefault();
         // 수정
         if(editItem) {
-            // 새로운 배열 저장, {} --> updateData()
+            // 새로운 배열 저장, {charge...} --> updateData()
             updateExpense(editItem.id, {charge, amount, category, month})
             setCharge("");   // 입력창 내용을 수정할 데이터로 채움
             setAmount(0);
@@ -47,7 +47,9 @@ const ExpenseForm =()=> {
         // 생성
         addExpense(charge, amount, category, month)
         setCharge("")
-        setAmount("")
+        setAmount(0)
+        setCategory("식비")
+        setMonth(1)
         }
     }
 
