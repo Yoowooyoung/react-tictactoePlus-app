@@ -59,7 +59,7 @@ const ExpenseList = () => {
                         </select>    
                     </div>
                     <div className='form-group'>
-                        <label htmlFor='filterMonth'>월 조회</label>
+                        <label htmlFor='filterMonth'>월별 조회</label>
                         <select 
                             className="form-control"
                             id="filterMonth"

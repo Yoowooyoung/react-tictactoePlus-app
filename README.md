@@ -24,7 +24,9 @@ GitHub 저장소 링크
 학습 문서 (추가한 기능별로 "왜 이렇게 구현했는지" 포함)
 
 # 실행과정
+
 node.js 설치
+node.js 버전: v24.12.0
 
 Visual Studio Code 
 console창에서: npm install // 파일 설치
