@@ -10,6 +10,16 @@ export const ExpenseProvider = ({children}) => {
         {id: 3, charge: "영화", amount: 2500, category: "문화생활비", month: 4},
     ])
 
+    const [alert, setAlert] = useState({ show: false, type: '', text: '' });
+    // 알림을 띄우고 3초 뒤에 사라지게 하는 함수
+    const handleAlert = ({ type, text }) => {
+        setAlert({ show: true, type, text });
+        // 3초 뒤에 알림 끄기
+        setTimeout(() => {
+            setAlert({ show: false, type: '', text: '' });
+        }, 3000);
+    }
+
     const [editItem, setEditItem] = useState(null)
 
     // addExpense함수 --> expenses에 저장
@@ -22,6 +32,7 @@ export const ExpenseProvider = ({children}) => {
             month: Number(month),
         }
         setExpenses([...expenses, newExpense])
+        handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
     }
 
     // 필터링한 배열(matchExpenses)
@@ -79,6 +90,7 @@ export const ExpenseProvider = ({children}) => {
             matchExpenses,  // 필터링된 요소 배열
             expenses,       // 모든 요소 배열
             editItem,       //수정중인 아이템
+            alert,
             // 메소드
             addExpense,      // 배열에 새 요소 추가
             filterExpense,   // 필터링
@@ -87,6 +99,7 @@ export const ExpenseProvider = ({children}) => {
             deleteAllList,   // 목록 지우기
             handleDelete,    // 삭제
             totalPrice,      // 가격 총합
+            handleAlert,
         }}>
             {children}
         </ExpenseContext.Provider>
