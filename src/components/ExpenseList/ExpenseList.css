@@ -1,0 +1,20 @@
+.filter-container {
+    display: flex;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    gap: 20px;                   /* 두 박스 사이의 간격 */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.filter-container .form-group {
+    flex: 0 0 40%;               /* 부모 너비의 딱 40%만 차지하게 고정 */
+    max-width: 22%;              /* 확실하게 40% 제한 */
+    padding: 0;                  /* 기존 padding 때문에 커 보일 수 있으니 0으로 조절 */
+}
+
+.filter-container select {
+    width: 250px;                 /* form-group(40%) 안에서 꽉 차게 */
+    height: 38px;
+    border: 1px solid var(--secondColor);
+    border-radius: 4px;
+}
