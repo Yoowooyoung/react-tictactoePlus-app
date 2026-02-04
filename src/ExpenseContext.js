@@ -72,6 +72,7 @@ export const ExpenseProvider = ({children}) => {
         setExpenses(newExpenses)
         handleAlert({ type: 'danger', text: '아이템이 삭제되었습니다.' });
     }
+    
     // 금액 total
     const totalPrice = matchExpenses.reduce((acc, curr) =>{
         return (acc+= Number(curr.amount))

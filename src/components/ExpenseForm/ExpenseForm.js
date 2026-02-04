@@ -12,13 +12,12 @@ const ExpenseForm =()=> {
     const [charge, setCharge] = useState("")
     // amount 저장 (비용)
     const [amount, setAmount] = useState(0)
-
     // category 저장 (카테고리)
     const [category, setCategory] = useState("식비")
     // date 저장 (날짜)
     const [date, setDate] = useState(1)
     
-    // 전역store에서 호출
+    // 전역store에서 가져오기
     const {addExpense, updateExpense, editItem} 
     = useContext(ExpenseContext);
     
@@ -34,7 +33,7 @@ const ExpenseForm =()=> {
     }, [editItem]);
     // [editItem]이 변경될때 effect 실행
 
-    // 제출 클릭 시
+    // 제출/수정 버튼 클릭 시
     const handleSubmit =(e)=> {
         e.preventDefault();
         // 수정

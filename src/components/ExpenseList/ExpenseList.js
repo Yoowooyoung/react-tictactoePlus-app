@@ -3,10 +3,11 @@ import { MdDelete } from 'react-icons/md';
 import './ExpenseList.css';
 import {ExpenseContext} from '../../ExpenseContext';
 import ExpenseItem from '../ExpenseItem/ExpenseItem'
-import ExpensePrice from '../ExpensePrice/ExpensePrice';
 
+// 목록지우기, 조회 컴포넌트
 const ExpenseList = () => {
-    // 전역변수에서 가져오기
+
+    // 전역상태에서 가져오기
     const {expenses, filterExpense, matchExpenses, deleteAllList}
     = useContext(ExpenseContext)
 
@@ -14,10 +15,11 @@ const ExpenseList = () => {
     const [filterCategory, setFilterCategory] = useState("all")
     const [filterDate, setFilterDate] = useState("all")
 
-    // 실시간 카테고리 조회 확인
+    // 조회 항목 클릭 시 동작
     useEffect(() => {
         filterExpense(filterCategory, filterDate);
-        }, [filterCategory, filterDate, expenses]);
+        // 의존성 배열 하나라도 변경 시 동작
+    }, [filterCategory, filterDate, expenses]);
 
     // 조회 시
     const filterSubmit=(e)=> {
@@ -25,16 +27,10 @@ const ExpenseList = () => {
     filterExpense(filterCategory, filterDate)
     }
 
-    // 목록 지우기 클릭 시
-    const clearItem=(e)=> {
-        e.preventDefault();
-        deleteAllList();
-    }
-
     return (
         <React.Fragment>
             <button 
-                onClick={clearItem}
+                onClick={()=>deleteAllList()}
                 className='btn'
             >
             목록 지우기
@@ -51,7 +47,6 @@ const ExpenseList = () => {
                             name="filterCategory"
                             value={filterCategory}
                             onChange={(e)=>{setFilterCategory(e.target.value)}} >
-                                {/* category 조회 사항 */}
                                 <option value="all">all</option>
                                 <option>식비</option>
                                 <option>이동비</option>
@@ -66,7 +61,6 @@ const ExpenseList = () => {
                             name="filterDate"
                             value={filterDate}
                             onChange={(e)=>{setFilterDate(e.target.value)}} >
-                                {/* date 조회 사항 */}
                                 <option value="all">all</option>
                                 <option value="1">1월</option>
                                 <option value="2">2월</option>
