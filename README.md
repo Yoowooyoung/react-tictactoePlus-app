@@ -9,7 +9,7 @@ NodePackageManager(NPM) 버전: v11.6.2
 
 text-editor: Visual Studio Code 
 
-console창에서: npm install // 파일 설치
+console창에서: npm install // 파일 설치 <br>
 npm run start // 실행
 
 # 과제
