@@ -5,51 +5,53 @@ import { MdSend } from 'react-icons/md';
 import "./ExpenseForm.css";
 import { ExpenseContext } from '../../ExpenseContext';
 
-
+// 제출 컴포넌트
 const ExpenseForm =()=> {
     
-    // charge, amount 저장
+    // charge 저장 (이름)
     const [charge, setCharge] = useState("")
+    // amount 저장 (비용)
     const [amount, setAmount] = useState(0)
 
-    // category, month 저장
+    // category 저장 (카테고리)
     const [category, setCategory] = useState("식비")
-    const [month, setMonth] = useState(1)
+    // date 저장 (날짜)
+    const [date, setDate] = useState(1)
     
     // 전역store에서 호출
     const {addExpense, updateExpense, editItem} 
     = useContext(ExpenseContext);
     
-    // 실시간 확인
+    // 수정 버튼 클릭 시 동작
     useEffect(() => {
         if (editItem) {
-            // 입력창 내용을 수정할 데이터로 채움
+            // 입력칸을 수정하기 전 데이터로 채움
             setCharge(editItem.charge);
             setAmount(editItem.amount);
             setCategory(editItem.category);
-            setMonth(editItem.month);
-            
+            setDate(editItem.date);
         }
     }, [editItem]);
+    // [editItem]이 변경될때 effect 실행
 
     // 제출 클릭 시
     const handleSubmit =(e)=> {
         e.preventDefault();
         // 수정
         if(editItem) {
-            // 새로운 배열 저장, {charge...} --> updateData()
-            updateExpense(editItem.id, {charge, amount, category, month})
-            setCharge("");   // 입력창 내용을 수정할 데이터로 채움
+            // 수정할 요소 저장, {charge...} --> updateData()
+            updateExpense(editItem.id, {charge, amount, category, date})
+            setCharge("");
             setAmount(0);
             setCategory("식비");
-            setMonth("1");
+            setDate("1");
         } else {
         // 생성
-        addExpense(charge, amount, category, month)
+        addExpense(charge, amount, category, date)
         setCharge("")
         setAmount(0)
         setCategory("식비")
-        setMonth(1)
+        setDate(1)
         }
     }
 
@@ -98,10 +100,10 @@ const ExpenseForm =()=> {
                     <label htmlFor='amount'>월</label>
                     <select 
                         className='form-control' // CSS 클래스명
-                        id="month"              // 고유 ID
-                        name="month"            // input의 이름
-                        value={month}
-                        onChange={(e)=>{setMonth(e.target.value)}}
+                        id="date"              // 고유 ID
+                        name="date"            // input의 이름
+                        value={date}
+                        onChange={(e)=>{setDate(e.target.value)}}
                     >
                         <option value="1">1월</option>
                         <option value="2">2월</option>
@@ -121,8 +123,9 @@ const ExpenseForm =()=> {
             <button 
                 type='submit'
                 className='btn'
-            >
-                제출
+            >   
+                {/* 수정중일 떄: '수정 , 아니면 '제출' */}
+                { editItem ? '수정' : '제출'}
                 <MdSend className='btn-icon'/>
             </button>
         </form>

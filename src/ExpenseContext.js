@@ -5,19 +5,19 @@ export const ExpenseProvider = ({children}) => {
     
     // 배열: expenses
     const [expenses, setExpenses] = useState([
-        {id: 1, charge: "돼지국밥", amount: 8000, category: "식비", month: 8},
-        {id: 2, charge: "KTX", amount: 10000, category: "이동비", month: 8},
-        {id: 3, charge: "영화", amount: 2500, category: "문화생활비", month: 4},
+        {id: 1, charge: "돼지국밥", amount: 8000, category: "식비", date: 8},
+        {id: 2, charge: "KTX", amount: 10000, category: "이동비", date: 8},
+        {id: 3, charge: "영화", amount: 2500, category: "문화생활비", date: 4},
     ])
 
     // addExpense함수 --> expenses에 저장
-    const addExpense =(charge, amount, category, month)=>{
+    const addExpense =(charge, amount, category, date)=>{
         const newExpense = {
             id: crypto.randomUUID(),
             charge: charge,
             amount: Number(amount),
             category: category,
-            month: Number(month),
+            date: Number(date),
         }
         setExpenses([...expenses, newExpense])
         handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
@@ -26,12 +26,12 @@ export const ExpenseProvider = ({children}) => {
     // 필터링한 배열(matchExpenses)
     const [matchExpenses, setMatchExpenses] = useState(expenses)
     // 필터링 함수
-    const filterExpense =(filterCategory, filterMonth)=> {
+    const filterExpense =(filterCategory, filterDate)=> {
         const matchExpense = expenses.filter((expense) => {
                 // 카테고리, 월이 모두 조건에 만족해야하기 때문에 AND연산자 사용
                 const matchCategory = filterCategory === "all" || filterCategory === expense.category
-                const matchMonth =  Number(filterMonth) === expense.month || filterMonth === "all"
-            return matchCategory && matchMonth;
+                const matchDate =  Number(filterDate) === expense.date || filterDate === "all"
+            return matchCategory && matchDate;
             })
         setMatchExpenses(matchExpense)
     }
@@ -49,7 +49,7 @@ export const ExpenseProvider = ({children}) => {
     const updateExpense = (id, updatedExpense) => {
         const newExpenses = expenses.map((expense) => {
             if (expense.id === id) {
-                return { ...expense, ...updatedExpense };
+                return {...updatedExpense};
             }
             return expense;
         });
@@ -103,7 +103,6 @@ export const ExpenseProvider = ({children}) => {
             deleteAllList,   // 목록 지우기
             handleDelete,    // 삭제
             totalPrice,      // 가격 총합
-            handleAlert,      // alert 메시지
         }}>
             {children}
         </ExpenseContext.Provider>

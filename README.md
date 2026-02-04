@@ -1,6 +1,15 @@
-# 예산계산기에 기능추가하기
+# 제목: 예산계산기에 기능 추가하기
 
-# 2026.02.03 (화)
+# 제출일: 2026.02.04 (수)
+
+# 실행과정
+node.js 설치
+node.js 버전: v24.12.0
+
+text-editor: Visual Studio Code 
+
+console창에서: npm install // 파일 설치
+npm run start // 실행
 
 # 과제
 목표 : 강의에서 만든 예산 계산기 앱에 새로운 기능 추가
@@ -23,11 +32,4 @@ useContext를 활용한 전역 상태 관리
 GitHub 저장소 링크
 학습 문서 (추가한 기능별로 "왜 이렇게 구현했는지" 포함)
 
-# 실행과정
-
-node.js 설치
-node.js 버전: v24.12.0
-
-Visual Studio Code 
-console창에서: npm install // 파일 설치
-npm run start // 실행
+# CSS 파일은 강의에서 작성한 코드를 이용했습니다.

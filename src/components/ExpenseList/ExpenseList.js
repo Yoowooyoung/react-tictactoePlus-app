@@ -10,19 +10,19 @@ const ExpenseList = () => {
     const {expenses, filterExpense, matchExpenses, deleteAllList}
     = useContext(ExpenseContext)
 
-    // 필터링된 [category, month] 저장
+    // 필터링된 [category, date] 저장
     const [filterCategory, setFilterCategory] = useState("all")
-    const [filterMonth, setFilterMonth] = useState("all")
+    const [filterDate, setFilterDate] = useState("all")
 
     // 실시간 카테고리 조회 확인
     useEffect(() => {
-        filterExpense(filterCategory, filterMonth);
-        }, [filterCategory, filterMonth, expenses]);
+        filterExpense(filterCategory, filterDate);
+        }, [filterCategory, filterDate, expenses]);
 
     // 조회 시
     const filterSubmit=(e)=> {
         e.preventDefault();
-    filterExpense(filterCategory, filterMonth)
+    filterExpense(filterCategory, filterDate)
     }
 
     // 목록 지우기 클릭 시
@@ -59,14 +59,14 @@ const ExpenseList = () => {
                         </select>    
                     </div>
                     <div className='form-group'>
-                        <label htmlFor='filterMonth'>월별 조회</label>
+                        <label htmlFor='filterDate'>월별 조회</label>
                         <select 
                             className="form-control"
-                            id="filterMonth"
-                            name="filterMonth"
-                            value={filterMonth}
-                            onChange={(e)=>{setFilterMonth(e.target.value)}} >
-                                {/* month 조회 사항 */}
+                            id="filterDate"
+                            name="filterDate"
+                            value={filterDate}
+                            onChange={(e)=>{setFilterDate(e.target.value)}} >
+                                {/* date 조회 사항 */}
                                 <option value="all">all</option>
                                 <option value="1">1월</option>
                                 <option value="2">2월</option>

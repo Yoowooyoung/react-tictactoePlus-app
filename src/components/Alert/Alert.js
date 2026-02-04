@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 import './Alert.css';
 import { ExpenseContext } from '../../ExpenseContext';
 
-// Alert.js: 생성, 삭제 메시지 표시(알림 컴포넌트)
+// 메시지 컴포넌트
 const Alert = () => {
+
+    // 전역상태에서 'text'가 담겨있는 'alert객체' 가져오기
     const { alert } = useContext(ExpenseContext)
 
     return (

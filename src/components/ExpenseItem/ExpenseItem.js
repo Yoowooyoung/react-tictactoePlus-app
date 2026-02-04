@@ -24,7 +24,7 @@ const ExpenseItem = ({expense}) => {
                     카테고리: {expense.category}
                 </span>
                 <span>
-                    {expense.month} 월
+                    {expense.date} 월
                 </span>
             </div>
             <div>
