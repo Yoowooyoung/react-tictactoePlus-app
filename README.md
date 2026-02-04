@@ -3,34 +3,34 @@
 # 제출일: 2026.02.04 (수)
 
 # 실행과정
-node.js 설치
-node.js 버전: v24.12.0
-NodePackageManager(NPM) 버전: v11.6.2
+node.js 설치<br>
+node.js 버전: v24.12.0<br>
+NodePackageManager(NPM) 버전: v11.6.2<br>
 
-text-editor: Visual Studio Code 
+text-editor: Visual Studio Code <br>
 
 console창에서: npm install // 파일 설치 <br>
 npm run start // 실행
 
 # 과제
-목표 : 강의에서 만든 예산 계산기 앱에 새로운 기능 추가
-요구사항
-카테고리 필터링 : 지출 항목에 카테고리(식비, 교통비, 문화생활 등)를 추가하고, 특정 카테고리만 필터링하여 볼 수 있는 기능 구현
-월별 조회 : 지출 항목에 날짜를 추가하고, 월별로 지출 내역을 조회할 수 있는 기능 구현
-카테고리별 합계 : 선택한 월의 카테고리별 지출 합계를 표시
+목표 : 강의에서 만든 예산 계산기 앱에 새로운 기능 추가<br>
+요구사항<br>
+카테고리 필터링 : 지출 항목에 카테고리(식비, 교통비, 문화생활 등)를 추가하고, <br>특정 카테고리만 필터링하여 볼 수 있는 기능 구현
+월별 조회 : 지출 항목에 날짜를 추가하고, 월별로 지출 내역을 조회할 수 있는 <br>기능 구현
+카테고리별 합계 : 선택한 월의 카테고리별 지출 합계를 표시<br>
 
-힌트
-기존 expense 객체에 category, date 속성 추가
-filter 메소드를 활용한 조건부 렌더링
-reduce 메소드를 활용한 카테고리별 합계 계산
+힌트<br>
+기존 expense 객체에 category, date 속성 추가<br>
+filter 메소드를 활용한 조건부 렌더링<br>
+reduce 메소드를 활용한 카테고리별 합계 계산<br>
 
-관련 학습 내용
-useContext를 활용한 전역 상태 관리
-조건부 렌더링
-배열 메소드 심화 (filter, reduce)
+관련 학습 내용<br>
+useContext를 활용한 전역 상태 관리<br>
+조건부 렌더링<br>
+배열 메소드 심화 (filter, reduce)<br>
 
-제출물
-GitHub 저장소 링크
-학습 문서 (추가한 기능별로 "왜 이렇게 구현했는지" 포함)
+제출물<br>
+GitHub 저장소 링크<br>
+학습 문서 (추가한 기능별로 "왜 이렇게 구현했는지" 포함)<br>
 
 # CSS 파일은 강의에서 작성한 코드를 이용했습니다.
