@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
-export const ExpenseContext = createContext();
 
+// 전역상태
+export const ExpenseContext = createContext();
 export const ExpenseProvider = ({children}) => {
     
     // 배열: expenses
