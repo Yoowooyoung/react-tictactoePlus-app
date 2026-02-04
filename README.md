@@ -5,6 +5,7 @@
 # 실행과정
 node.js 설치
 node.js 버전: v24.12.0
+NodePackageManager(NPM) 버전: v11.6.2
 
 text-editor: Visual Studio Code 
 

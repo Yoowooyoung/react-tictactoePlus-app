@@ -3,7 +3,7 @@ import { ExpenseContext } from "../../ExpenseContext"
 
 
 const ExpensePrice = () => {
-    // 전역 store에서 가져오기
+    // 전역상태에서 가져오기
     const { totalPrice } = useContext(ExpenseContext)
     return (
         <div>
